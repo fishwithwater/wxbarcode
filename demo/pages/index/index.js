@@ -8,7 +8,7 @@ Page({
     },
 
     onLoad: function() {
-        wxbarcode.barcode('barcode', '1234567890123456789', 680, 200);
-        wxbarcode.qrcode('qrcode', '1234567890123456789', 420, 420);
+        wxbarcode.barcode('#barcode', '1234567890123456789', 680, 200, () => console.log('finish'));
+        wxbarcode.qrcode('#qrcode', '1234567890123456789', 200, 200, () => console.log('finish'));
     }
 })

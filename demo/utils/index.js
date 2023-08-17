@@ -1,20 +1,39 @@
 var barcode = require('./barcode');
 var qrcode = require('./qrcode');
 
-function convert_length(length) {
-	return Math.round(wx.getSystemInfoSync().windowWidth * length / 750);
+function barc(id, code, width, height, callback) {
+	wx.createSelectorQuery()
+    .select(id) // 在 WXML 中填入的 id
+    .node(({ node: canvas }) => {
+		 // Canvas 绘制上下文
+		 const ctx = canvas.getContext('2d');
+		 canvas.width = width;
+		 canvas.height = height;
+		 barcode.code128(ctx, code, width, height);
+		 if (callback) {
+			callback();
+		 }
+	 }).exec({});
 }
 
-function barc(id, code, width, height) {
-	barcode.code128(wx.createCanvasContext(id), code, convert_length(width), convert_length(height))
-}
+function qrc(id, code, width, height, callback) {
+	wx.createSelectorQuery()
+    .select(id) // 在 WXML 中填入的 id
+    .node(({ node: canvas }) => {
+        // Canvas 绘制上下文
+        const ctx = canvas.getContext('2d');
+        canvas.width = width;
+		canvas.height = height;
 
-function qrc(id, code, width, height) {
-	qrcode.api.draw(code, {
-		ctx: wx.createCanvasContext(id),
-		width: convert_length(width),
-		height: convert_length(height)
-	})
+		qrcode.api.draw(code, {
+			ctx,
+			width: canvas.width,
+			height: canvas.height
+		});
+		if (callback) {
+			callback();
+		}
+    }).exec({});
 }
 
 module.exports = {

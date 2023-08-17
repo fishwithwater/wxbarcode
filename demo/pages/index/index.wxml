@@ -5,10 +5,10 @@
     </view>
     <view class="barcode">
       <view class="barnum">{{code}}</view>
-      <canvas canvas-id="barcode" />
+      <canvas id="barcode" type="2d"/>
     </view>
     <view class="qrcode">
-      <canvas canvas-id="qrcode" />
+      <canvas id="qrcode" type="2d" />
     </view>
   </view>
 </view>

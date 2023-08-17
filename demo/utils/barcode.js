@@ -62,7 +62,6 @@ exports.code128 = function (ctx, text, width, height) {
         }
     }
 
-    ctx.draw();
 }
 
 
@@ -278,7 +277,7 @@ var Graphics = function(ctx, width, height) {
 
 //use native color
 Graphics.prototype._fillRect = function(x, y, width, height, color) {
-    this.ctx.setFillStyle(color)
+    this.ctx.fillStyle = color
     this.ctx.fillRect(x, y, width, height)
 }
 

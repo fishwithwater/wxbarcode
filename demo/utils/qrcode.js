@@ -747,18 +747,16 @@ var QR = (function () {
             }
 
             size = size || _size || Math.min(canvas.width, canvas.height);
-
             var frame = genframe(string),
                 ctx = canvas.ctx,
                 px = Math.round(size / (width + 8));
-
             var roundedSize = px * (width + 8),
                 offset = Math.floor((size - roundedSize) / 2);
 
             size = roundedSize;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.setFillStyle('#000000');
+            ctx.fillStyle = '#000000';
 
             for (var i = 0; i < width; i++) {
                 for (var j = 0; j < width; j++) {
@@ -767,7 +765,7 @@ var QR = (function () {
                     }
                 }
             }
-            ctx.draw();
+            // ctx.draw();
         }
     }
 
